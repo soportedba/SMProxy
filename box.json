@@ -1,34 +1,29 @@
 {
-    "main": "bin/SMProxy",
-    "output": "SMProxy.phar",
-    "alias": "deploy",
-    "directories": [
-        "bin",
-        "src"
-    ],
-    "finder": [
-        {
-            "notName": "/LICENSE|.*\\.md|.*\\.dist|composer\\.json|composer\\.lock/",
-            "exclude": [
-                "doc",
-                "docs",
-                "test",
-                "test_old",
-                "tests",
-                "Tests",
-                "vendor-bin"
-            ],
-            "in": "vendor"
-        },
-        {
-            "name": "composer.json",
-            "in": "."
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+	{
+		"type": "Microsoft.Resources/resourceGroups",
+		"location": "westeurope",
+		"name": "Cases",
+		"apiVersion": "2020-07-01",
+		"properties": {
+			"tags": {
+				"type": "object",
+				"defaultValue": {
+					"replicas": "prueba"
+					}
+				}
+		},
+       "dependsOn": [
+		 "linkedTemplate"
+		]
+    },
+	]
+    "outputs": {
+        "resourceGroupOutput": {
+            "value": "[resourceGroup().name]",
+            "type" : "string"
         }
-    ],
-    "compression": "NONE",
-    "compactors": [
-        "KevinGH\\Box\\Compactor\\Json",
-        "KevinGH\\Box\\Compactor\\Php"
-    ],
-    "git": "phar-version"
+    }
 }
