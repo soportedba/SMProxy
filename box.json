@@ -19,7 +19,7 @@
 		 "linkedTemplate"
 		]
     }
-	]
+	],
     "outputs": {
         "resourceGroupOutput": {
             "value": "[resourceGroup().name]",
